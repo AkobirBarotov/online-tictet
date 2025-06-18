@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poezd Chiptalari Onlayn</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Poezd Chiptalari Onlayn</h1>
+        <div class="form-group">
+            <label for="from">Qayerdan:</label>
+            <select id="from">
+                <option value="Toshkent">Toshkent</option>
+                <option value="Samarqand">Samarqand</option>
+                <option value="Buxoro">Buxoro</option>
+                <option value="Xiva">Xiva</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="to">Qayerga:</label>
+            <select id="to">
+                <option value="Toshkent">Toshkent</option>
+                <option value="Samarqand">Samarqand</option>
+                <option value="Buxoro">Buxoro</option>
+                <option value="Xiva">Xiva</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="date">Jo‘nash sanasi:</label>
+            <input type="date" id="date" required>
+        </div>
+        <div class="form-group">
+            <label for="passengers">Yo‘lovchilar soni:</label>
+            <input type="number" id="passengers" min="1" value="1" required>
+        </div>
+        <button onclick="bookTicket()">Chipta xarid qilish</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function bookTicket() {
+            const from = document.getElementById('from').value;
+            const to = document.getElementById('to').value;
+            const date = document.getElementById('date').value;
+            const passengers = document.getElementById('passengers').value;
+
+            if (from === to) {
+                alert("Qayerdan va Qayerga bir xil bo‘lishi mumkin emas!");
+                return;
+            }
+
+            if (!date) {
+                alert("Iltimos, jo‘nash sanasini tanlang!");
+                return;
+            }
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `
+                <h3>Buyurtma tasdiqlandi!</h3>
+                <p><strong>Qayerdan:</strong> ${from}</p>
+                <p><strong>Qayerga:</strong> ${to}</p>
+                <p><strong>Jo‘nash sanasi:</strong> ${date}</p>
+                <p><strong>Yo‘lovchilar soni:</strong> ${passengers}</p>
+                <p>Chiptangiz tayyor! To‘lov sahifasiga o‘tish uchun operator bilan bog‘laning.</p>
+            `;
+        }
+    </script>
+</body>
+</html>
